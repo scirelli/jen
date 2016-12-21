@@ -2,10 +2,10 @@
 
 The longest word in this text is 5 characters long.
 
+     *     
+     *     
  *   *     
  * * *   * 
  * * *   * 
  * * *   * 
- * * * * * 
- * * * * * 
 ___________

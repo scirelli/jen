@@ -29,7 +29,7 @@ int main(int argc, char *argv[]){
     }
 
     for(int i=0; i<MAX_WORDS; i++) {
-        if( words[indexOfLongestWord] < words[i] ){
+        if( words[indexOfLongestWord] <= words[i] ){
             indexOfLongestWord = i;
         }
     }
@@ -37,7 +37,7 @@ int main(int argc, char *argv[]){
     printf("\n\nThe longest word in this text is %d characters long.\n\n", wordCount);
 
     for(int rowIndex=0, rowLength=words[indexOfLongestWord], rowHeight=0; rowIndex<rowLength; rowIndex++){
-        rowHeight = (MAX_WORDS-1) - rowIndex;
+        rowHeight = (rowLength) - rowIndex;
         printf("%c", SPACE);
         for(int colIndex=0, curWordHeight=0; colIndex<MAX_WORDS; colIndex++){
             curWordHeight = words[colIndex];
