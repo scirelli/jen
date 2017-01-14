@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Athena's Birthday</title>
+        <meta name="description" content="Jen's code to show Athena's days since born.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body{
+                font-size:24px;
+                text-align:center;
+            }
+            section > div{
+                display:inline-block;
+                margin:10% auto 0 auto;
+            }
+            .label{
+                font-weight:300;
+            }
+            .value{
+                font-weight:bold;
+                font-size:1.2em;
+            }
+            ul{
+                list-style-type: none; 
+                text-align:left;
+            }
+            ul > li{
+                white-space: nowrap;
+            }
+        </style>
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <section>
+            <div id="content"></div>
+        </section>
+        <script>
+            var content = document.querySelector('#content');
+            function updateContent(){
+                var oReq = new XMLHttpRequest();
+
+                oReq.addEventListener('load', function reqListener(){
+                    var formatted = oReq.response.split('\n').filter((v)=>{return v;}).map(function(str){
+                        str = str.split(': ');
+                        str[0] = `<span class="label">${str[0]}</span>`;
+                        str[1] = `<span class="value">${str[1]}</span>`;
+                        return '<li>' + str.join(': ') + '</li>';
+                    }).join('');
+                    content.innerHTML = '<ul>' + formatted + '</ul>';
+                });
+                oReq.open('GET', 'http://athenacirelli.com/cgi-bin/counting_day');
+                oReq.send();
+            }
+
+            setInterval(updateContent, 1000);
+        </script>
+    </body>
+</html>
